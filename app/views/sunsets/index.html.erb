@@ -1,0 +1,34 @@
+
+<h1 class="text-center my-4">
+  Today is <%= Date.today.strftime("%B %d, %Y") %>
+</h1>
+
+<% if Time.now.hour < 20 %>
+  <p class="text-center text-warning">
+    The sunset hasn't occurred yet. Check back later for today's sunset photo!
+  </p>
+<% end %>
+
+<h1 class="text-center my-4">
+  Past Sunsets
+</h1>
+<div class="row">
+  <% @sunsets.each do |sunset| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <% if sunset.image.attached? %>
+          <%= image_tag sunset.image, class: "card-img-top", alt: "Sunset Image" %>
+        <% else %>
+          <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+            No image available
+          </div>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title">
+            Sunset from <%= sunset.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+          </h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
