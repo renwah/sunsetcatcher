@@ -22,6 +22,6 @@ class SunsetsController < ApplicationController
   private
 
   def sunset_params
-    params.permit(:timestamp, :image)
+    params.permit(:image)
   end
 end
